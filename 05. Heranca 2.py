@@ -1,28 +1,56 @@
 from abc import ABC, abstractmethod
 import os
-
-os.system ("cls || clear")
+os.system("cls || clear")
 
 class Endereco:
-    # Construtor:
-    def __init__(self, logradouro: str, numero: str, complemento: str, CEP: str, cidade: str) -> None:
-        # Atributos: 
+    def __init__(self, logradouro: str, numero: str, complemento: str, cep: str, cidade: str) -> None:
         self.logradouro = logradouro
         self.numero = numero
         self.complemento = complemento
-        self.CEP = CEP
+        self.cep = cep
         self.cidade = cidade
-
-    # def exibir_endereco(self) -> str:
-    #     return f"Logradouro: {self.logradouro} \nNúmero: {self.numero}"
+        
     def __str__ (self) -> str:
-         return f"Logradouro: {self.logradouro} \nNúmero: {self.numero} \nComplemento: {self.complemento} \nCEP: {self.CEP} \nCidade: {self.cidade}"
+        return f"\nLogradouro: {self.logradouro} \nNúmero: {self.numero} \nComplemento: {self.complemento} \nCep: {self.cep} \nCidade: {self.cidade}"
+
 
 class Funcionario(ABC):
     # Construtor
-    def __init__(self, nome: str, idade: int, telefone: str, email: str, endereco: Endereco) -> None:
+    def __init__(self, nome: str, telefone: str, email: str, salario: float, endereco: Endereco) -> None:
         self.nome = nome
-        self.idade = idade
         self.telefone = telefone
         self.email = email
         self.endereco = endereco
+        self.salario = salario
+    def __str__(self) -> str:
+        return f"===== Informações do Funcionário ===== \nNome: {self.nome} \nTelefone: {self.telefone} \nEMAIL: {self.email}\n \n==== Endereço ==== \n{self.endereco} \nSalario: {self.salario}"
+    
+    @abstractmethod
+    def salarioFinal() -> float:
+        pass
+class Engenheiro(Funcionario): 
+    def __init__(self, nome: str, telefone: str, email: str, salario: float, endereco: Endereco) -> None:
+        super().__init__(nome, telefone, email, salario, endereco)
+        
+    def salarioFinal() -> float:
+        pass
+
+class Medico(Funcionario):
+    def __init__(self, nome: str, telefone: str, email: str, salario: float, endereco: Endereco) -> None:
+        super().__init__(nome, telefone, email, salario, endereco)
+    
+    def salarioFinal() -> float:
+        pass
+    
+    
+engenheiro = Engenheiro("Fulano", "(71) 9 8754 5784", "fulano@gamil.com", 2500.00,
+                         Endereco ("Avenida R", 412, "Ao lado do mercado", "46554-450", "Salvador"))
+medico = Medico("Ciclano", "(71) 9 8857 2538", "ciclano@gamil.com", 3800.00, 
+                Endereco ("Rua T", 235, "Em frente ao bar", "50235-020", "Salvador"))
+
+
+# Instanciar classes.
+#funcionario = Funcionario("José", 23, 2500)
+print(engenheiro)
+print("\n \n")
+print(medico)
