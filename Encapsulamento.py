@@ -5,7 +5,7 @@ os.system("cls || clear")
 #Criando sua própria excessão:
 class SaldoInsuficienteError(Exception):
     pass
-class ValorNegativo(Exception):
+class ValorNegativoError(Exception):
     pass
 class Conta:
     def __init__(self, numeroConta: int, agencia: int) -> None:
@@ -35,14 +35,14 @@ class Conta:
     def depositar(self, valor):
         try:
             self.__verificarDepositar(valor)
-        except ValorNegativo as error:
+        except ValorNegativoError as error:
             return f"Erro: {error}"
         self._saldo -= valor
         return self._saldo
     
     def __verificarDepositar(self, valor):
         if valor < 0:
-            raise ValorNegativo ("Não é possível depositar este valor.")
+            raise ValorNegativoError ("Não é possível depositar este valor.")
         
 class ContaCorrente(Conta):
     pass

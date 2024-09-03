@@ -23,7 +23,7 @@ class Funcionario(ABC):
         self.endereco = endereco
         self.salario = salario
     def __str__(self) -> str:
-        return f"===== Informações do Funcionário ===== \nNome: {self.nome} \nTelefone: {self.telefone} \nEMAIL: {self.email}\n \n==== Endereço ==== \n{self.endereco} \nSalario: {self.salario}"
+        return f"- Informações do Funcionário - \nNome: {self.nome} \nTelefone: {self.telefone} \nEMAIL: {self.email}\n \n- Endereço - \n{self.endereco} \nSalario: {self.salario}"
     
     @abstractmethod
     def salarioFinal() -> float:
